@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { ExpenseForm } from './components/ExpenseForm';
 import { Dashboard } from './components/Dashboard';
 import { Wallet } from 'lucide-react';
@@ -13,7 +13,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const result = await api.getData(selectedMonth);
@@ -23,11 +23,11 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedMonth]);
 
   useEffect(() => {
     fetchData();
-  }, [selectedMonth]);
+  }, [fetchData]);
 
   const handleMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedMonth(e.target.value);

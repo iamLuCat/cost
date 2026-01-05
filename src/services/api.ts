@@ -1,4 +1,4 @@
-import type { ApiResponse, Expense } from '../types';
+import type { ApiResponse, Expense, SettlementRow } from '../types';
 
 const MOCK_DATA: ApiResponse = {
     expenses: [
@@ -28,11 +28,13 @@ const MOCK_DATA: ApiResponse = {
 const IS_DEV = import.meta.env.DEV;
 const API_URL = import.meta.env.VITE_API_URL || '';
 
+
+
 export const api = {
     async getData(month: string): Promise<ApiResponse> {
         let url = API_URL;
+        // ... (lines 34-52 omitted for brevity, ensure they align)
         if (IS_DEV && API_URL.includes('script.google.com')) {
-            // Extract the path after .com and prefix with /api for proxy
             const parts = API_URL.split('script.google.com');
             if (parts.length > 1) {
                 url = `/api${parts[1]}`;
@@ -45,7 +47,6 @@ export const api = {
         }
 
         console.log('Fetching from:', url);
-        // Use proxy url if calculated, else API_URL
         const targetUrl = url;
 
         const res = await fetch(`${targetUrl}${targetUrl.includes('?') ? '&' : '?'}action=readAll&month=${month}`);
@@ -53,14 +54,14 @@ export const api = {
 
         // Cleanup Settlement Data (Filter out rows where sender is "Column 1" or empty)
         if (json.settlement) {
-            json.settlement = json.settlement.filter((row: any) =>
-                row.sender && row.sender !== 'Column 1' && !row.sender.startsWith('Unknown')
+            json.settlement = json.settlement.filter((row: SettlementRow) =>
+                row.sender && (row.sender as string) !== 'Column 1' && !(row.sender as string).startsWith('Unknown')
             );
         }
 
         // Cleanup Expenses (Filter out empty rows)
         if (json.expenses) {
-            json.expenses = json.expenses.filter((row: any) =>
+            json.expenses = json.expenses.filter((row: Expense) =>
                 row.date && row.payer && row.amount && row.description
             );
         }

@@ -28,6 +28,10 @@ const MOCK_DATA: ApiResponse = {
 const IS_DEV = import.meta.env.DEV;
 const API_URL = import.meta.env.VITE_API_URL || '';
 
+if (!API_URL && !IS_DEV) {
+    console.error('CRITICAL: VITE_API_URL is missing! API calls will fail. Check GitHub Secrets.');
+}
+
 
 
 export const api = {

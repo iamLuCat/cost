@@ -40,7 +40,7 @@ jobs:
       - name: Build with Vite
         run: npm run build
         env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_GAS_API_URL: ${{ secrets.VITE_GAS_API_URL }}
           DEV: false
 
       - name: Upload artifact

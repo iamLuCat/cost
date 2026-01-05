@@ -26,10 +26,10 @@ const MOCK_DATA: ApiResponse = {
 };
 
 const IS_DEV = import.meta.env.DEV || false;
-const API_URL = import.meta.env.VITE_API_URL || '';
+const API_URL = import.meta.env.VITE_GAS_API_URL || '';
 
 if (!API_URL && !IS_DEV) {
-    console.error('CRITICAL: VITE_API_URL is missing! API calls will fail. Check GitHub Secrets.');
+    console.error('CRITICAL: VITE_GAS_API_URL is missing! API calls will fail. Check GitHub Secrets.');
 }
 
 

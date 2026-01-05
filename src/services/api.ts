@@ -25,7 +25,7 @@ const MOCK_DATA: ApiResponse = {
     ],
 };
 
-const IS_DEV = import.meta.env.DEV;
+const IS_DEV = import.meta.env.DEV || false;
 const API_URL = import.meta.env.VITE_API_URL || '';
 
 if (!API_URL && !IS_DEV) {

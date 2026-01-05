@@ -27,5 +27,16 @@
     - [x] Configure Vite Base Path (if needed) <!-- id: 24 -->
     - [x] Verify Workflow File <!-- id: 25 -->
 
+- [x] Configure Environment Variables for CI <!-- id: 26 -->
+    - [x] Create Implementation Plan <!-- id: 27 -->
+    - [x] Update CI Workflow with Secrets (User Manual) <!-- id: 28 -->
+    - [x] Update CI Workflow with Secrets (User Manual) <!-- id: 28 -->
+    - [x] Run `act` to verify (Skipped - Docker missing) <!-- id: 29 -->
+
+- [x] Debug Production Environment <!-- id: 30 -->
+    - [x] Update api.ts with logging <!-- id: 31 -->
+    - [x] Notify user to check Secrets <!-- id: 32 -->
+    - [x] Add CI Debug Step for Secrets <!-- id: 33 -->
+
 ## Previous Tasks
 - [x] Fix "Formulas are not supported in a table header row" error <!-- id: 0 -->
